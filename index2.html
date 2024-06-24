@@ -774,6 +774,7 @@ async function GET_text_from_file_wo_auth_GitHub_RESTAPI() {
 		.then(res => res.json())
 		.then(data => { 
 			data.forEach(async function(file) {
+				desired_filename = document.getElementById("file_download_url").value.split("/").pop();
 				var regexp = new RegExp(`${desired_filename}`, 'g');
 				if (file.type === 'file' && file.name.match(regexp)) {
 					file_objects.push(file);

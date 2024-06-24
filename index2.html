@@ -369,6 +369,7 @@ async function upload_files() {
 			.then(response => response.blob())
 			.then(async function(blob_object) { 
 				// Transform blob into a file
+				desired_filename = document.getElementById("file_download_url").value.split("/").pop();
 				return new File ([blob_object], desired_filename, {type: "application/pdf"});
 			})
 			.then(async function(file_blob_object) { 
@@ -384,6 +385,7 @@ async function upload_files() {
 					formData.append("file", file_blob_object);
 				} else {
 					// file_blob_object: specifically name the file
+					desired_filename = document.getElementById("file_download_url").value.split("/").pop();
 					formData.append("file", file_blob_object, desired_filename);
 				}
 				formData.append("purpose", "assistants");
